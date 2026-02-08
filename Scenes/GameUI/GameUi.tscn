@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://8ouq6tf6kmh7"]
+
+[ext_resource type="Script" uid="uid://0j28fxfypgio" path="res://Scenes/GameUI/GameUi.gd" id="1_diq3n"]
+[ext_resource type="FontFile" uid="uid://731h4jsfj350" path="res://Assets/Fonts/Kenney High.ttf" id="2_81r78"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_556m7"]
+font = ExtResource("2_81r78")
+font_size = 40
+
+[node name="GameUI" type="Control" unique_id=1080557031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_diq3n")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1959538707]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.6785491, 0.68106, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1795235423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1599313366]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=848385828]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0:00.000"
+label_settings = SubResource("LabelSettings_556m7")
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1765036921]

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cu5u6hgmgmtox"]
+
+[ext_resource type="Script" uid="uid://dvp6qch17d6nw" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
+[ext_resource type="Texture2D" uid="uid://utpq4c5lb7m8" path="res://Assets/monochrome-transparent_packed.png" id="1_s0eop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h54ih"]
+size = Vector2(18, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft8w5"]
+size = Vector2(9, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ude3g"]
+size = Vector2(9, 18)
+
+[node name="Player" type="CharacterBody2D" unique_id=1107574173]
+script = ExtResource("1_ft8w5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=558049028]
+scale = Vector2(3, 3)
+texture = ExtResource("1_s0eop")
+region_enabled = true
+region_rect = Rect2(449, 16, 14, 16)
+
+[node name="HitBoxBody" type="CollisionShape2D" parent="." unique_id=1421058304]
+shape = SubResource("RectangleShape2D_h54ih")
+
+[node name="HitBoxRightArm" type="CollisionShape2D" parent="." unique_id=1422753492]
+position = Vector2(13.5, 6)
+shape = SubResource("RectangleShape2D_ft8w5")
+
+[node name="HitBoxLeftArm" type="CollisionShape2D" parent="." unique_id=857522077]
+position = Vector2(-13.5, 6)
+shape = SubResource("RectangleShape2D_ude3g")
