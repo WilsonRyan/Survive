@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu5u6hgmgmtox" path="res://Scenes/Player/Player.tscn" id="1_gwu2e"]
 [ext_resource type="PackedScene" uid="uid://8ouq6tf6kmh7" path="res://Scenes/GameUI/GameUi.tscn" id="1_rdw05"]
+[ext_resource type="PackedScene" uid="uid://btipv0mgh21dg" path="res://Scenes/Enemies/EnemyBase.tscn" id="3_xbxml"]
 
 [node name="Game" type="Node2D" unique_id=597683128]
 
@@ -12,4 +13,7 @@ layer = -2
 
 [node name="Player" parent="." unique_id=1107574173 instance=ExtResource("1_gwu2e")]
 z_index = 2
-position = Vector2(627, 355)
+position = Vector2(780, 359)
+
+[node name="EnemyBase" parent="." unique_id=919741826 instance=ExtResource("3_xbxml")]
+position = Vector2(632, 186)
