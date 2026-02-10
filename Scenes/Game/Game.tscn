@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8ouq6tf6kmh7" path="res://Scenes/GameUI/GameUi.tscn" id="1_rdw05"]
 [ext_resource type="Script" uid="uid://dyq028d6fca4s" path="res://Scenes/Game/Game.gd" id="1_xbxml"]
 [ext_resource type="PackedScene" uid="uid://cv8qfwllo20rj" path="res://Scenes/ObjectMaker/ObjectMaker.tscn" id="4_ln2h6"]
+[ext_resource type="Texture2D" uid="uid://j406u3ic5hhn" path="res://Resources/Textures/grass.tres" id="5_y3kpf"]
 
 [node name="Game" type="Node2D" unique_id=597683128]
 script = ExtResource("1_xbxml")
@@ -22,4 +23,60 @@ position = Vector2(649, 361)
 [node name="SpawnTimer" type="Timer" parent="." unique_id=820609515]
 autostart = true
 
+[node name="ProgressionTimer" type="Timer" parent="." unique_id=1613949559]
+autostart = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=983953957]
+repeat_size = Vector2(1280, 720)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1443114404]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(614, 593)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=1548044537]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(112, 207)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D" unique_id=2138236401]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(468, 68)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax2D" unique_id=1689466800]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(119.000015, 517)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax2D" unique_id=1684046601]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(978, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax2D" unique_id=878912399]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(1127, 112)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax2D" unique_id=1149036691]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(547, 287)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Parallax2D" unique_id=416742725]
+self_modulate = Color(0, 0.5045081, 0.04784446, 1)
+position = Vector2(771, 157)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y3kpf")
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="ProgressionTimer" to="." method="_on_progression_timer_timeout"]

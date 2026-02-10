@@ -39,7 +39,7 @@ offset_bottom = -433.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.911952, 2.393349)
-color = Color(0, 1.579, 1.553, 0.569)
+color = Color(0, 0.09019608, 0, 0.5686275)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1795235423]
 layout_mode = 1

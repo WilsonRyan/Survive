@@ -29,5 +29,8 @@ func move_toward_player() -> void:
 		move_and_slide()
 
 
-func _on_hitbox_area_entered(_area: Area2D) -> void:
-	queue_free()
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area == Enemy:
+		return
+	else:
+		queue_free()

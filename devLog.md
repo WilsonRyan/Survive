@@ -1,3 +1,8 @@
+2026-02-10 PM.2
+Pushed: nearly infinite background image and enemy spawn timer decreasing
+Learned: how to use Sprites2D within a parallax container
+Next: create experience that drops when the enemy dies
+
 2026-02-10 PM
 Pushed: Player health with death loop
 Learned: how to properly resize textureRects in a UI container
@@ -5,7 +10,8 @@ Next: infinitely spawning background image (parallex), so that one can tell they
 
 2026-02-10 AM
 Pushed: Player bullet shooting at nearest enemy at constant interval
-Learned: How to add objects to a group and iterate through them
+Learned: How to add objects 
+to a group and iterate through them
 Next: Player health points
 
 2026-02-09

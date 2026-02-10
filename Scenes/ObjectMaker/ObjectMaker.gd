@@ -37,6 +37,8 @@ func on_create_enemy_bat() -> void:
 #returns a random position outside of the viewport
 func rand_pos_gen() -> Vector2:
 	var spawn_side: String = VIEWPORTSIDES[randi_range(0,3)]
+	if _player_ref == null:
+		return global_position
 	var vp_center: Vector2 = _player_ref.global_position
 	if spawn_side == "Top":
 		return Vector2(vp_center.x + randi_range(VPLEFTDIST,VPRIGHTDIST), vp_center.y + VPTOPDIST)

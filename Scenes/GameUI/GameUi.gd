@@ -7,7 +7,6 @@ const HEART_EMPTY = preload("uid://cgr4idxxp8v4p")
 @onready var h_1: TextureRect = $MarginContainer/HBoxHealth/H1
 @onready var h_2: TextureRect = $MarginContainer/HBoxHealth/H2
 @onready var h_3: TextureRect = $MarginContainer/HBoxHealth/H3
-
 @onready var timer_label: Label = $MarginContainer/VBoxContainer/TimerLabel
 @onready var game_timer: Timer = $GameTimer
 @onready var v_box_game_over: VBoxContainer = $VBoxGameOver
