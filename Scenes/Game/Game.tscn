@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cu5u6hgmgmtox" path="res://Scenes/Player/Player.tscn" id="1_gwu2e"]
 [ext_resource type="PackedScene" uid="uid://8ouq6tf6kmh7" path="res://Scenes/GameUI/GameUi.tscn" id="1_rdw05"]
-[ext_resource type="PackedScene" uid="uid://btipv0mgh21dg" path="res://Scenes/Enemies/EnemyBase.tscn" id="3_xbxml"]
+[ext_resource type="Script" uid="uid://dyq028d6fca4s" path="res://Scenes/Game/Game.gd" id="1_xbxml"]
+[ext_resource type="PackedScene" uid="uid://cv8qfwllo20rj" path="res://Scenes/ObjectMaker/ObjectMaker.tscn" id="4_ln2h6"]
 
 [node name="Game" type="Node2D" unique_id=597683128]
+script = ExtResource("1_xbxml")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1564888236]
 layer = -2
@@ -15,5 +17,9 @@ layer = -2
 z_index = 2
 position = Vector2(780, 359)
 
-[node name="EnemyBase" parent="." unique_id=919741826 instance=ExtResource("3_xbxml")]
-position = Vector2(632, 186)
+[node name="SpawnTimer" type="Timer" parent="." unique_id=820609515]
+autostart = true
+
+[node name="ObjectMaker" parent="." unique_id=1304409993 instance=ExtResource("4_ln2h6")]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

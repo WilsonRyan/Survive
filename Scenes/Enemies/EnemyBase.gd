@@ -6,6 +6,7 @@ class_name Enemy
 
 var _player_ref: Player
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_player_ref = get_tree().get_first_node_in_group(Player.GROUP_NAME)

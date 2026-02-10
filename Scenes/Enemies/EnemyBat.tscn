@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c5qr0yejdn0ia"]
+
+[ext_resource type="PackedScene" uid="uid://btipv0mgh21dg" path="res://Scenes/Enemies/EnemyBase.tscn" id="1_f7kly"]
+[ext_resource type="Texture2D" uid="uid://utpq4c5lb7m8" path="res://Assets/monochrome-transparent_packed.png" id="2_jg853"]
+
+[node name="EnemyBat" unique_id=919741826 instance=ExtResource("1_f7kly")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1226079008]
+texture = ExtResource("2_jg853")

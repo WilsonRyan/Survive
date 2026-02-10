@@ -16,7 +16,8 @@ size = Vector2(9, 18)
 size = Vector2(9, 18)
 
 [node name="Player" type="CharacterBody2D" unique_id=1107574173]
-collision_mask = 12
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ft8w5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=558049028]
@@ -26,9 +27,11 @@ region_enabled = true
 region_rect = Rect2(449, 16, 14, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=932768792]
+visible = false
 shape = SubResource("RectangleShape2D_jmcll")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=586219992]
+collision_mask = 12
 
 [node name="HitBoxBody" type="CollisionShape2D" parent="HitBox" unique_id=1421058304]
 shape = SubResource("RectangleShape2D_h54ih")
@@ -40,3 +43,5 @@ shape = SubResource("RectangleShape2D_ft8w5")
 [node name="HitBoxLeftArm" type="CollisionShape2D" parent="HitBox" unique_id=857522077]
 position = Vector2(-13.5, 6)
 shape = SubResource("RectangleShape2D_ude3g")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

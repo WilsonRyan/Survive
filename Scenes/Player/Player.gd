@@ -24,3 +24,7 @@ func _process(_delta: float) -> void:
 
 func get_input() -> Vector2:
 	return Vector2(Input.get_axis("left","right"), Input.get_axis("up","down"))
+
+
+func _on_hit_box_area_entered(_area: Area2D) -> void:
+	print("DMG")
