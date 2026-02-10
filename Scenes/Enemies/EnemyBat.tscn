@@ -7,3 +7,5 @@
 
 [node name="Sprite2D" parent="." index="0" unique_id=1226079008]
 texture = ExtResource("2_jg853")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

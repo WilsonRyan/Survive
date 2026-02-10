@@ -17,9 +17,9 @@ layer = -2
 z_index = 2
 position = Vector2(780, 359)
 
+[node name="ObjectMaker" parent="." unique_id=1304409993 instance=ExtResource("4_ln2h6")]
+
 [node name="SpawnTimer" type="Timer" parent="." unique_id=820609515]
 autostart = true
-
-[node name="ObjectMaker" parent="." unique_id=1304409993 instance=ExtResource("4_ln2h6")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 const ENEMY_BAT = preload("uid://c5qr0yejdn0ia")
+const BULLET_PLAYER = preload("uid://c46yncpjk0pt2")
 
 const VIEWPORTSIDES: Dictionary = {
 	0: "Top",    # y at -100, x between -100,1380
@@ -15,11 +16,17 @@ const VPBOTDIST: int = 460
 
 func _enter_tree() -> void:
 	SignalHub.on_create_enemy_bat.connect(on_create_enemy_bat)
+	SignalHub.on_create_player_bullet.connect(on_create_player_bullet)
 
 
 func add_object(obj: Node, pos: Vector2) -> void:
 	add_child(obj)
 	obj.global_position = pos
+
+func on_create_player_bullet(pos: Vector2, dir: Vector2) -> void:
+	var pb: Bullet = BULLET_PLAYER.instantiate()
+	pb.direction = dir
+	call_deferred("add_object", pb, pos)
 
 func on_create_enemy_bat() -> void:
 	var eny: Enemy = ENEMY_BAT.instantiate()

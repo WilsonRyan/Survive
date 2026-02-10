@@ -44,4 +44,8 @@ shape = SubResource("RectangleShape2D_ft8w5")
 position = Vector2(-13.5, 6)
 shape = SubResource("RectangleShape2D_ude3g")
 
+[node name="ShootTimer" type="Timer" parent="." unique_id=747885713]
+autostart = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
