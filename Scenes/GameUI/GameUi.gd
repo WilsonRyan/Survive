@@ -1,19 +1,58 @@
 extends Control
 
 
+const HEART_FULL = preload("uid://doe5euit4hoj")
+const HEART_EMPTY = preload("uid://cgr4idxxp8v4p")
+
+@onready var h_1: TextureRect = $MarginContainer/HBoxHealth/H1
+@onready var h_2: TextureRect = $MarginContainer/HBoxHealth/H2
+@onready var h_3: TextureRect = $MarginContainer/HBoxHealth/H3
+
 @onready var timer_label: Label = $MarginContainer/VBoxContainer/TimerLabel
 @onready var game_timer: Timer = $GameTimer
+@onready var v_box_game_over: VBoxContainer = $VBoxGameOver
 
 var _time: float = 0.0
+var _player_ref: Player
+var _game_over: bool = false
 
 func _unhandled_input(_event: InputEvent) -> void:
-	GameManager.navigate_scenes()
+	if _game_over == true and Input.is_action_just_pressed("start") == true:
+		GameManager.load_game_scene()
+	else:
+		GameManager.load_main_scene()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalHub.on_player_takes_damage.connect(on_player_takes_damage)
+	_player_ref = get_tree().get_first_node_in_group(Player.GROUP_NAME)
 	game_timer.start()
+	v_box_game_over.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_time += delta
-	timer_label.text = "%.1fs" % _time
+	if _game_over == false:
+		_time += delta
+		timer_label.text = "%.1fs" % _time
+
+
+func on_player_takes_damage(_dmg: int) -> void:
+	if _player_ref.lives == 3:
+		h_1.texture = HEART_FULL
+		h_2.texture = HEART_FULL
+		h_3.texture = HEART_FULL
+	elif _player_ref.lives == 2:
+		h_1.texture = HEART_EMPTY
+		h_2.texture = HEART_FULL
+		h_3.texture = HEART_FULL
+	elif _player_ref.lives == 1:
+		h_1.texture = HEART_EMPTY
+		h_2.texture = HEART_EMPTY
+		h_3.texture = HEART_FULL
+	else:
+		h_1.texture = HEART_EMPTY
+		h_2.texture = HEART_EMPTY
+		h_3.texture = HEART_EMPTY
+		v_box_game_over.show()
+		game_timer.stop()
+		_game_over = true

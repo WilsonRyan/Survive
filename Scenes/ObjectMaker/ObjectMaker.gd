@@ -3,6 +3,8 @@ extends Node2D
 const ENEMY_BAT = preload("uid://c5qr0yejdn0ia")
 const BULLET_PLAYER = preload("uid://c46yncpjk0pt2")
 
+var _player_ref: Player
+
 const VIEWPORTSIDES: Dictionary = {
 	0: "Top",    # y at -100, x between -100,1380
 	1: "Bottom", # y at  820, x between -100,1380
@@ -17,7 +19,7 @@ const VPBOTDIST: int = 460
 func _enter_tree() -> void:
 	SignalHub.on_create_enemy_bat.connect(on_create_enemy_bat)
 	SignalHub.on_create_player_bullet.connect(on_create_player_bullet)
-
+	_player_ref = get_tree().get_first_node_in_group(Player.GROUP_NAME)
 
 func add_object(obj: Node, pos: Vector2) -> void:
 	add_child(obj)
@@ -35,7 +37,7 @@ func on_create_enemy_bat() -> void:
 #returns a random position outside of the viewport
 func rand_pos_gen() -> Vector2:
 	var spawn_side: String = VIEWPORTSIDES[randi_range(0,3)]
-	var vp_center: Vector2 = get_viewport_rect().get_center()
+	var vp_center: Vector2 = _player_ref.global_position
 	if spawn_side == "Top":
 		return Vector2(vp_center.x + randi_range(VPLEFTDIST,VPRIGHTDIST), vp_center.y + VPTOPDIST)
 	elif spawn_side == "Bottom":

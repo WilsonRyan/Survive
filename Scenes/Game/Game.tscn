@@ -15,7 +15,7 @@ layer = -2
 
 [node name="Player" parent="." unique_id=1107574173 instance=ExtResource("1_gwu2e")]
 z_index = 2
-position = Vector2(780, 359)
+position = Vector2(649, 361)
 
 [node name="ObjectMaker" parent="." unique_id=1304409993 instance=ExtResource("4_ln2h6")]
 

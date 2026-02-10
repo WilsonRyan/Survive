@@ -2,10 +2,21 @@
 
 [ext_resource type="Script" uid="uid://0j28fxfypgio" path="res://Scenes/GameUI/GameUi.gd" id="1_diq3n"]
 [ext_resource type="FontFile" uid="uid://731h4jsfj350" path="res://Assets/Fonts/Kenney High.ttf" id="2_81r78"]
+[ext_resource type="Texture2D" uid="uid://doe5euit4hoj" path="res://Resources/Textures/heart_full.tres" id="3_556m7"]
+[ext_resource type="FontFile" uid="uid://347obxqunqpm" path="res://Assets/Fonts/Kenney Thick.ttf" id="4_jwnss"]
+[ext_resource type="FontFile" uid="uid://7s05uwtke4wa" path="res://Assets/Fonts/Kenney Pixel.ttf" id="5_33k4q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_556m7"]
 font = ExtResource("2_81r78")
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_lgqju"]
+font = ExtResource("4_jwnss")
+font_size = 104
+
+[sub_resource type="LabelSettings" id="LabelSettings_yfkfq"]
+font = ExtResource("5_33k4q")
+font_size = 60
 
 [node name="GameUI" type="Control" unique_id=1080557031]
 layout_mode = 3
@@ -21,9 +32,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -568.0
+offset_top = -433.0
+offset_right = -568.0
+offset_bottom = -433.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.6785491, 0.68106, 1)
+scale = Vector2(1.911952, 2.393349)
+color = Color(0, 1.579, 1.553, 0.569)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1795235423]
 layout_mode = 1
@@ -49,4 +65,55 @@ size_flags_vertical = 0
 text = "0:00.000"
 label_settings = SubResource("LabelSettings_556m7")
 
+[node name="HBoxHealth" type="HBoxContainer" parent="MarginContainer" unique_id=1816345489]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="H1" type="TextureRect" parent="MarginContainer/HBoxHealth" unique_id=757254575]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+texture = ExtResource("3_556m7")
+
+[node name="H2" type="TextureRect" parent="MarginContainer/HBoxHealth" unique_id=1591918580]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+texture = ExtResource("3_556m7")
+
+[node name="H3" type="TextureRect" parent="MarginContainer/HBoxHealth" unique_id=1590090678]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+texture = ExtResource("3_556m7")
+
 [node name="GameTimer" type="Timer" parent="." unique_id=1765036921]
+
+[node name="VBoxGameOver" type="VBoxContainer" parent="." unique_id=119917437]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -445.5
+offset_top = -58.5
+offset_right = 445.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="VBoxGameOver" unique_id=1279960647]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_lgqju")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gameOverSpace" type="Label" parent="VBoxGameOver" unique_id=1479051276]
+layout_mode = 2
+
+[node name="GameOverPrompt" type="Label" parent="VBoxGameOver" unique_id=892537018]
+layout_mode = 2
+text = "Press \"Enter\" to restart"
+label_settings = SubResource("LabelSettings_yfkfq")
+horizontal_alignment = 1
+vertical_alignment = 1

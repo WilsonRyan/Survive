@@ -23,9 +23,10 @@ func _process(_delta: float) -> void:
 
 
 func move_toward_player() -> void:
-	var dir: Vector2 = (_player_ref.global_position - global_position).normalized()
-	velocity = dir * SPEED
-	move_and_slide()
+	if _player_ref != null:
+		var dir: Vector2 = (_player_ref.global_position - global_position).normalized()
+		velocity = dir * SPEED
+		move_and_slide()
 
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
