@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c46yncpjk0pt2"]
 
 [ext_resource type="PackedScene" uid="uid://d2n07t1f2erbi" path="res://Scenes/Bullets/BulletBase.tscn" id="1_ee0uy"]
+[ext_resource type="Script" uid="uid://ci7i0tphup31d" path="res://Scenes/Bullets/BulletPlayer.gd" id="2_gn0od"]
 
-[node name="BulletBase" unique_id=1844434712 instance=ExtResource("1_ee0uy")]
+[node name="BulletPlayer" unique_id=1844434712 instance=ExtResource("1_ee0uy")]
+script = ExtResource("2_gn0od")

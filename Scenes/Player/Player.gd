@@ -5,20 +5,29 @@ class_name Player
 const ENEMY_BASE = preload("uid://btipv0mgh21dg")
 const GAME_UI = preload("uid://8ouq6tf6kmh7")
 
-#Level Up options
-@export var player_speed: float = 200.0
-@export var fire_rate: float = 1.0
-@export var bullet_size: float = 1.0
-@export var bullet_speed: float = 100.0
-@export var bullet_penetration: float = 1.0
-@export var pickup_range: float = 100
+var powerups: Dictionary = {
+	"Player Speed": 200.0,
+	"Fire Rate": 100.0,
+	"Bullet Size": 100.0,
+	"Bullet Speed": 100.0,
+	"Bullet Penetration": 1.0,
+	"Pickup Range": 100.0
+}
 
-@export var lives: int = 300       #<----- SET REALLY HIGH FOR TESTING!
+#Level Up options
+#@export var player_speed: float = 200.0      # upgrade is 10% increase, base is 200
+#@export var fire_rate: float = 100.0         # upgrade is 10% decrease, base is 100
+#@export var bullet_size: float = 100.0       # upgrade is 10% increase, base is 100
+#@export var bullet_speed: float = 100.0      # upgrade is 10% increase, base is 100
+#@export var bullet_penetration: float = 1.0  # upgrade is up by 1     , base is 1
+#@export var pickup_range: float = 100.0      # upgrade is 20% increase, base is 100
+
+@export var lives: int = 3                 #<-- SET HIGH FOR TESTING, base is 3
 
 var _invisible: bool = false
 var _player_dead: bool = false
 var _experience: int = 0
-var _level_up_amt: float = 10
+var _level_up_amt: float = 4
 var _player_level: int = 1
 
 const GROUP_NAME: String = "Player"
@@ -31,7 +40,7 @@ const GROUP_NAME: String = "Player"
 
 
 func get_input() -> Vector2:
-	return Vector2(Input.get_axis("left","right"), Input.get_axis("up","down"))
+	return Vector2(Input.get_axis("left","right"), Input.get_axis("up","down")).normalized()
 
 
 
@@ -40,20 +49,36 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	SignalHub.on_xp_gained.connect(on_xp_gained)
+	SignalHub.on_powerup_picked.connect(on_powerup_picked)
 
 func _physics_process(_delta: float) -> void:
 	if _player_dead == false:
-		velocity = player_speed * get_input()
+		velocity = (powerups["Player Speed"] * get_input())
 		move_and_slide()
 
 
+func level_up() -> void:
+	_player_level += 1
+	_experience = 0
+	_level_up_amt = _level_up_amt * 1.2
+	SignalHub.emit_on_level_up()
+	get_tree().paused = true
+
+func on_powerup_picked(pu: String) -> void:
+	if pu == "Bullet Penetration":
+		powerups[pu] += 1
+	elif pu == "Fire Rate":
+		powerups[pu] = powerups[pu] * 0.9
+	elif pu == "Pickup Range":
+		powerups[pu] = powerups[pu] * 1.2
+	else:
+		powerups[pu] = powerups[pu] * 1.1
+	get_tree().paused = false
 
 func on_xp_gained() -> void:
 	_experience += 1
 	if _experience >= _level_up_amt:
-		_player_level += 1
-		_experience = 0
-		_level_up_amt = _level_up_amt * 1.5
+		level_up()
 
 func get_closest_enemy_loc() -> Vector2:
 	var enemies = get_tree().get_nodes_in_group("Enemy")
@@ -90,7 +115,7 @@ func set_dmg_enemies() -> void:
 
 func _on_shoot_timer_timeout() -> void:
 	SignalHub.emit_on_create_player_bullet(global_position, get_closest_enemy_loc()) #<---- DIRECTION HERE!
-	shoot_timer.wait_time = fire_rate
+	shoot_timer.wait_time = powerups["Fire Rate"]/100
 	shoot_timer.start()
 
 func _on_hurt_timer_timeout() -> void:

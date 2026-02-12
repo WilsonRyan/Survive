@@ -10,9 +10,10 @@
 script = ExtResource("1_xbxml")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1564888236]
-layer = -2
+layer = -1
 
 [node name="GameUI" parent="UI" unique_id=1080557031 instance=ExtResource("1_rdw05")]
+z_index = 3
 
 [node name="Player" parent="." unique_id=1107574173 instance=ExtResource("1_gwu2e")]
 z_index = 2
@@ -27,6 +28,7 @@ autostart = true
 autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=983953957]
+z_index = -1
 repeat_size = Vector2(1280, 720)
 repeat_times = 100
 

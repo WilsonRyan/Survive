@@ -20,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 func pickup() -> void:
 	if _player_ref == null: return
 	var dist: float = global_position.distance_to(_player_ref.global_position)
-	if dist <= _player_ref.pickup_range:
+	if dist <= _player_ref.powerups["Pickup Range"]:
 		var dir: Vector2 = (_player_ref.global_position - global_position).normalized()
 		var speed: float = (pickup_max_speed/dist)
 		if speed > pickup_max_speed: 

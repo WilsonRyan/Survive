@@ -1,3 +1,8 @@
+2026-02-12 5pm
+Pushed: 6 different powerup options that the player can choose and apply from 3 random options when the player levels up
+Learning: how to use dictionaries to store values and access across the project
+Next: Apply menu music, game music, shoot SFX, enemy hit SFX, player hit SFX, screen shake when the player gets hit
+
 2026-02-11
 Pushed: working xp drops on enemy deaths with player experience bar and level tracking
 Learning: how to use textureProgressBars and make objects move faster as they approach the player\
