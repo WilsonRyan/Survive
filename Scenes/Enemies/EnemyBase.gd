@@ -4,7 +4,7 @@ class_name Enemy
 
 const GROUP_NAME: String = "Enemy"
 
-@export var SPEED: float = 100.0
+@export var SPEED: float = 125.0
 
 var _player_ref: Player
 
@@ -33,4 +33,5 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area == Enemy:
 		return
 	else:
+		SignalHub.emit_on_create_xp(global_position)
 		queue_free()

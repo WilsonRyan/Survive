@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://8ouq6tf6kmh7"]
 
 [ext_resource type="Script" uid="uid://0j28fxfypgio" path="res://Scenes/GameUI/GameUi.gd" id="1_diq3n"]
-[ext_resource type="FontFile" uid="uid://731h4jsfj350" path="res://Assets/Fonts/Kenney High.ttf" id="2_81r78"]
+[ext_resource type="Texture2D" uid="uid://utpq4c5lb7m8" path="res://Assets/monochrome-transparent_packed.png" id="2_33k4q"]
 [ext_resource type="Texture2D" uid="uid://doe5euit4hoj" path="res://Resources/Textures/heart_full.tres" id="3_556m7"]
+[ext_resource type="LabelSettings" uid="uid://cs12pr3awe428" path="res://Resources/LabelSettings/GameUI_40.tres" id="3_jwnss"]
 [ext_resource type="FontFile" uid="uid://347obxqunqpm" path="res://Assets/Fonts/Kenney Thick.ttf" id="4_jwnss"]
 [ext_resource type="FontFile" uid="uid://7s05uwtke4wa" path="res://Assets/Fonts/Kenney Pixel.ttf" id="5_33k4q"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_556m7"]
-font = ExtResource("2_81r78")
-font_size = 40
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwnss"]
+atlas = ExtResource("2_33k4q")
+region = Rect2(168, 23, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lgqju"]
 font = ExtResource("4_jwnss")
@@ -41,6 +42,19 @@ grow_vertical = 2
 scale = Vector2(1.911952, 2.393349)
 color = Color(0, 0.09019608, 0, 0.5686275)
 
+[node name="XPProgressBar" type="TextureProgressBar" parent="." unique_id=818458890]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+nine_patch_stretch = true
+texture_progress = SubResource("AtlasTexture_jwnss")
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1795235423]
 layout_mode = 1
 anchors_preset = 15
@@ -53,37 +67,45 @@ grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1599313366]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=960258923]
 layout_mode = 2
 
-[node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=848385828]
+[node name="HBoxHealth" type="HBoxContainer" parent="MarginContainer/VBoxContainer2" unique_id=1816345489]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="H1" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxHealth" unique_id=757254575]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+texture = ExtResource("3_556m7")
+
+[node name="H2" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxHealth" unique_id=1591918580]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+texture = ExtResource("3_556m7")
+
+[node name="H3" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxHealth" unique_id=1590090678]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+texture = ExtResource("3_556m7")
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=381906779]
+layout_mode = 2
+text = "Level: 0"
+label_settings = ExtResource("3_jwnss")
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=848385828]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "0:00.000"
-label_settings = SubResource("LabelSettings_556m7")
+label_settings = ExtResource("3_jwnss")
 
-[node name="HBoxHealth" type="HBoxContainer" parent="MarginContainer" unique_id=1816345489]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1599313366]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="H1" type="TextureRect" parent="MarginContainer/HBoxHealth" unique_id=757254575]
-custom_minimum_size = Vector2(42, 36)
-layout_mode = 2
-texture = ExtResource("3_556m7")
-
-[node name="H2" type="TextureRect" parent="MarginContainer/HBoxHealth" unique_id=1591918580]
-custom_minimum_size = Vector2(42, 36)
-layout_mode = 2
-texture = ExtResource("3_556m7")
-
-[node name="H3" type="TextureRect" parent="MarginContainer/HBoxHealth" unique_id=1590090678]
-custom_minimum_size = Vector2(42, 36)
-layout_mode = 2
-texture = ExtResource("3_556m7")
 
 [node name="GameTimer" type="Timer" parent="." unique_id=1765036921]
 

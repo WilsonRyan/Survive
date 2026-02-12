@@ -5,12 +5,21 @@ class_name Player
 const ENEMY_BASE = preload("uid://btipv0mgh21dg")
 const GAME_UI = preload("uid://8ouq6tf6kmh7")
 
-@export var speed: float = 200.0
+#Level Up options
+@export var player_speed: float = 200.0
 @export var fire_rate: float = 1.0
-@export var lives: int = 3
+@export var bullet_size: float = 1.0
+@export var bullet_speed: float = 100.0
+@export var bullet_penetration: float = 1.0
+@export var pickup_range: float = 100
+
+@export var lives: int = 300       #<----- SET REALLY HIGH FOR TESTING!
 
 var _invisible: bool = false
 var _player_dead: bool = false
+var _experience: int = 0
+var _level_up_amt: float = 10
+var _player_level: int = 1
 
 const GROUP_NAME: String = "Player"
 
@@ -20,18 +29,31 @@ const GROUP_NAME: String = "Player"
 @onready var hit_box: Area2D = $HitBox
 
 
-func _enter_tree() -> void:
-	add_to_group(GROUP_NAME)
-
-func _physics_process(_delta: float) -> void:
-	if _player_dead == false:
-		velocity = speed * get_input()
-		move_and_slide()
-
 
 func get_input() -> Vector2:
 	return Vector2(Input.get_axis("left","right"), Input.get_axis("up","down"))
 
+
+
+func _enter_tree() -> void:
+	add_to_group(GROUP_NAME)
+
+func _ready() -> void:
+	SignalHub.on_xp_gained.connect(on_xp_gained)
+
+func _physics_process(_delta: float) -> void:
+	if _player_dead == false:
+		velocity = player_speed * get_input()
+		move_and_slide()
+
+
+
+func on_xp_gained() -> void:
+	_experience += 1
+	if _experience >= _level_up_amt:
+		_player_level += 1
+		_experience = 0
+		_level_up_amt = _level_up_amt * 1.5
 
 func get_closest_enemy_loc() -> Vector2:
 	var enemies = get_tree().get_nodes_in_group("Enemy")
@@ -45,6 +67,7 @@ func get_closest_enemy_loc() -> Vector2:
 			min_distance = distance
 			closest_eny = eny
 	return (closest_eny.global_position - global_position).normalized()
+
 
 
 func _on_hit_box_area_entered(_area: Area2D) -> void:

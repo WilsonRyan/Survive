@@ -2,13 +2,17 @@ extends Area2D
 
 class_name Bullet
 
-@export var speed: float = 100.0
 @export var direction: Vector2 = Vector2.RIGHT
 
 @onready var timer: Timer = $Timer
 
+var _player_ref: Player
+var speed: float = 1.0
+
 func _ready() -> void:
+	_player_ref = get_tree().get_first_node_in_group(Player.GROUP_NAME)
 	rotate(direction.angle())
+	speed = _player_ref.bullet_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

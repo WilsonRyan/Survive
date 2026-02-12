@@ -1,3 +1,8 @@
+2026-02-11
+Pushed: working xp drops on enemy deaths with player experience bar and level tracking
+Learning: how to use textureProgressBars and make objects move faster as they approach the player\
+Next: create the player power up options to all of the different scenes, then a menu that gives 3 power up options when the player levels ups
+
 2026-02-10 PM.2
 Pushed: nearly infinite background image and enemy spawn timer decreasing
 Learned: how to use Sprites2D within a parallax container

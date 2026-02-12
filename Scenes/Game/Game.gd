@@ -14,4 +14,3 @@ func _on_spawn_timer_timeout() -> void:
 func _on_progression_timer_timeout() -> void:
 	spawn_timer.wait_time = spawn_timer.wait_time * 0.99
 	progression_timer.start()
-	print(spawn_timer.wait_time)

@@ -2,6 +2,7 @@ extends Node2D
 
 const ENEMY_BAT = preload("uid://c5qr0yejdn0ia")
 const BULLET_PLAYER = preload("uid://c46yncpjk0pt2")
+const XP = preload("uid://ta5s77ibhxf0")
 
 var _player_ref: Player
 
@@ -19,11 +20,16 @@ const VPBOTDIST: int = 460
 func _enter_tree() -> void:
 	SignalHub.on_create_enemy_bat.connect(on_create_enemy_bat)
 	SignalHub.on_create_player_bullet.connect(on_create_player_bullet)
+	SignalHub.on_create_xp.connect(on_create_xp)
 	_player_ref = get_tree().get_first_node_in_group(Player.GROUP_NAME)
 
 func add_object(obj: Node, pos: Vector2) -> void:
 	add_child(obj)
 	obj.global_position = pos
+
+func on_create_xp(pos: Vector2) -> void:
+	var xp: Xp = XP.instantiate()
+	call_deferred("add_object", xp, pos)
 
 func on_create_player_bullet(pos: Vector2, dir: Vector2) -> void:
 	var pb: Bullet = BULLET_PLAYER.instantiate()

@@ -4,12 +4,15 @@ extends Control
 const HEART_FULL = preload("uid://doe5euit4hoj")
 const HEART_EMPTY = preload("uid://cgr4idxxp8v4p")
 
-@onready var h_1: TextureRect = $MarginContainer/HBoxHealth/H1
-@onready var h_2: TextureRect = $MarginContainer/HBoxHealth/H2
-@onready var h_3: TextureRect = $MarginContainer/HBoxHealth/H3
-@onready var timer_label: Label = $MarginContainer/VBoxContainer/TimerLabel
+@onready var h_1: TextureRect = $MarginContainer/VBoxContainer2/HBoxHealth/H1
+@onready var h_2: TextureRect = $MarginContainer/VBoxContainer2/HBoxHealth/H2
+@onready var h_3: TextureRect = $MarginContainer/VBoxContainer2/HBoxHealth/H3
+@onready var timer_label: Label = $MarginContainer/VBoxContainer2/TimerLabel
 @onready var game_timer: Timer = $GameTimer
 @onready var v_box_game_over: VBoxContainer = $VBoxGameOver
+@onready var level_label: Label = $MarginContainer/VBoxContainer2/LevelLabel
+@onready var xp_progress_bar: TextureProgressBar = $XPProgressBar
+
 
 var _time: float = 0.0
 var _player_ref: Player
@@ -33,10 +36,21 @@ func _process(delta: float) -> void:
 	if _game_over == false:
 		_time += delta
 		timer_label.text = "%.1fs" % _time
+	if _player_ref == null: return
+	update_xpbar()
+	update_level()
 
+func update_xpbar() -> void:
+	if _player_ref == null: return
+	xp_progress_bar.max_value = _player_ref._level_up_amt
+	xp_progress_bar.value = _player_ref._experience
+
+func update_level() -> void:
+	if _player_ref == null: return
+	level_label.text = "Level: %.0f" % _player_ref._player_level
 
 func on_player_takes_damage(_dmg: int) -> void:
-	if _player_ref.lives == 3:
+	if _player_ref.lives >= 3:
 		h_1.texture = HEART_FULL
 		h_2.texture = HEART_FULL
 		h_3.texture = HEART_FULL

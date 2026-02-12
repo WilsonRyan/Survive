@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cs12pr3awe428"]
+
+[ext_resource type="FontFile" uid="uid://731h4jsfj350" path="res://Assets/Fonts/Kenney High.ttf" id="1_0ntos"]
+
+[resource]
+font = ExtResource("1_0ntos")
+font_size = 40
