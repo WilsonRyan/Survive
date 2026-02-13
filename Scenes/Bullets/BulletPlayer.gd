@@ -8,6 +8,7 @@ func _ready() -> void:
 	rotate(direction.angle())
 	speed = _player_ref.powerups["Bullet Speed"]
 	scale = scale * _player_ref.powerups["Bullet Size"]/100
+	super()
 
 
 func _on_area_entered(area: Area2D) -> void:

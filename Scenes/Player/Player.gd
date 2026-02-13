@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
+const COIN_1 = preload("uid://cebiyk4wirbbk")
+const HURT_2 = preload("uid://dwrkmew5tg5c8")
+
+
 const ENEMY_BASE = preload("uid://btipv0mgh21dg")
 const GAME_UI = preload("uid://8ouq6tf6kmh7")
 
@@ -36,7 +40,7 @@ const GROUP_NAME: String = "Player"
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_box: Area2D = $HitBox
-
+@onready var sfx: AudioStreamPlayer2D = $SFX
 
 
 func get_input() -> Vector2:
@@ -77,6 +81,10 @@ func on_powerup_picked(pu: String) -> void:
 
 func on_xp_gained() -> void:
 	_experience += 1
+	if _invisible == false:
+		sfx.stream = COIN_1
+		sfx.volume_db = 1.0
+		sfx.play()
 	if _experience >= _level_up_amt:
 		level_up()
 
@@ -97,6 +105,9 @@ func get_closest_enemy_loc() -> Vector2:
 
 func _on_hit_box_area_entered(_area: Area2D) -> void:
 	if _invisible == false:
+		sfx.volume_db = 5.0
+		sfx.stream = HURT_2
+		sfx.play()
 		lives += -1
 		SignalHub.emit_on_player_takes_damage(1)
 		if lives <= 0:

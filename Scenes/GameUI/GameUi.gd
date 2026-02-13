@@ -1,5 +1,7 @@
 extends Control
 
+const UPGRADE_2 = preload("uid://o6h1uvnfqvqa")
+const GAMEOVER_4 = preload("uid://bv1p5hiny8qj0")
 
 const HEART_FULL = preload("uid://doe5euit4hoj")
 const HEART_EMPTY = preload("uid://cgr4idxxp8v4p")
@@ -16,6 +18,8 @@ const HEART_EMPTY = preload("uid://cgr4idxxp8v4p")
 @onready var powerup_button: TextureButton = $MarginContainer/HBoxUpgradeMenu/PowerupButton
 @onready var powerup_button_2: TextureButton = $MarginContainer/HBoxUpgradeMenu/PowerupButton2
 @onready var powerup_button_3: TextureButton = $MarginContainer/HBoxUpgradeMenu/PowerupButton3
+@onready var game_music: AudioStreamPlayer = $GameMusic
+@onready var sfx: AudioStreamPlayer = $SFX
 
 
 var _time: float = 0.0
@@ -28,6 +32,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	else:
 		GameManager.load_main_scene()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalHub.on_player_takes_damage.connect(on_player_takes_damage)
@@ -37,6 +42,8 @@ func _ready() -> void:
 	game_timer.start()
 	v_box_game_over.hide()
 	h_box_upgrade_menu.hide()
+	game_music.playing = true
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -61,6 +68,8 @@ func update_level() -> void:
 func on_powerup_picked(_pu: String) -> void:
 	h_box_upgrade_menu.hide()
 	_game_paused = false
+	sfx.stream = UPGRADE_2
+	sfx.play()
 	powerup_button.setup_button()
 	powerup_button_2.setup_button()
 	powerup_button_3.setup_button()
@@ -88,4 +97,11 @@ func on_player_takes_damage(_dmg: int) -> void:
 		h_3.texture = HEART_EMPTY
 		v_box_game_over.show()
 		game_timer.stop()
+		game_music.stop()
+		sfx.stream = GAMEOVER_4
+		sfx.play()
 		_game_paused = true
+
+
+func _on_game_music_finished() -> void:
+	game_music.play()

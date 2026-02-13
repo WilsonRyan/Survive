@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://347obxqunqpm" path="res://Assets/Fonts/Kenney Thick.ttf" id="4_jwnss"]
 [ext_resource type="FontFile" uid="uid://7s05uwtke4wa" path="res://Assets/Fonts/Kenney Pixel.ttf" id="5_33k4q"]
 [ext_resource type="PackedScene" uid="uid://c0foaxcy63lhp" path="res://Scenes/GameUI/PowerupButton.tscn" id="7_lgqju"]
+[ext_resource type="AudioStream" uid="uid://c83108vrno82m" path="res://Assets/Music/2018 Clement Panchout Shooting on Sight FIGHT LOOP.wav" id="8_yfkfq"]
+[ext_resource type="AudioStream" uid="uid://bv1p5hiny8qj0" path="res://Assets/SFX/gameover4.ogg" id="9_n43dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwnss"]
 atlas = ExtResource("2_33k4q")
@@ -145,3 +147,12 @@ layout_mode = 2
 
 [node name="PowerupButton3" parent="MarginContainer/HBoxUpgradeMenu" unique_id=285610149 instance=ExtResource("7_lgqju")]
 layout_mode = 2
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=711543654]
+stream = ExtResource("8_yfkfq")
+volume_db = -8.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1701519707]
+stream = ExtResource("9_n43dv")
+
+[connection signal="finished" from="GameMusic" to="." method="_on_game_music_finished"]

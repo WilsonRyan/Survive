@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://chvp6cpp88t5m" path="res://Scenes/Main/Main.gd" id="1_cmk6n"]
 [ext_resource type="FontFile" uid="uid://347obxqunqpm" path="res://Assets/Fonts/Kenney Thick.ttf" id="1_qtv3y"]
 [ext_resource type="FontFile" uid="uid://7s05uwtke4wa" path="res://Assets/Fonts/Kenney Pixel.ttf" id="2_cmk6n"]
+[ext_resource type="FontFile" uid="uid://v3mtoegrwmj0" path="res://Assets/Fonts/Kenney Mini.ttf" id="4_i3fi7"]
+[ext_resource type="AudioStream" uid="uid://dcsyvcuybr1ys" path="res://Assets/Music/2018 Clement Panchout Shooting on Sight PRE FIGHT LOOP.wav" id="5_o8wgc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i3fi7"]
 font = ExtResource("1_qtv3y")
@@ -14,6 +16,10 @@ font_size = 23
 [sub_resource type="LabelSettings" id="LabelSettings_o8wgc"]
 font = ExtResource("2_cmk6n")
 font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_w20t6"]
+font = ExtResource("4_i3fi7")
+font_size = 13
 
 [sub_resource type="Animation" id="Animation_w20t6"]
 length = 0.001
@@ -174,6 +180,13 @@ label_settings = SubResource("LabelSettings_o8wgc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MusicCreditLabel" type="Label" parent="TextureRect/MarginContainer" unique_id=749117251]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Music by Clement Panchout – www.clementpanchout.com"
+label_settings = SubResource("LabelSettings_w20t6")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1043952315]
 libraries/ = SubResource("AnimationLibrary_5s61s")
 autoplay = &"title"
@@ -185,4 +198,9 @@ texture = SubResource("CompressedTexture2D_cmk6n")
 region_enabled = true
 region_rect = Rect2(511.79965, 31.403625, 31.12381, 31.68465)
 
+[node name="LobbyMusic" type="AudioStreamPlayer" parent="." unique_id=1892664679]
+stream = ExtResource("5_o8wgc")
+volume_db = -8.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="LobbyMusic" to="." method="_on_lobby_music_finished"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvp6qch17d6nw" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
 [ext_resource type="Texture2D" uid="uid://utpq4c5lb7m8" path="res://Assets/monochrome-transparent_packed.png" id="1_s0eop"]
+[ext_resource type="PackedScene" uid="uid://cjhtbf713axrs" path="res://Scenes/PlayerCam/PlayerCam.tscn" id="3_h54ih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmcll"]
 size = Vector2(36, 42)
@@ -91,7 +92,9 @@ wait_time = 0.6
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1308460356]
 libraries/ = SubResource("AnimationLibrary_ude3g")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1691190839]
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=2025218104]
+
+[node name="PlayerCam" parent="." unique_id=1659336981 instance=ExtResource("3_h54ih")]
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

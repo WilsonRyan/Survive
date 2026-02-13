@@ -1,3 +1,8 @@
+2026-02-12 9pm
+Pushed: All music, SFX, and screen shake when the player gets hit
+Learning: how to recreate the screenshake with the camera2D
+Next: Upload game to itch.io and share with Matt!
+
 2026-02-12 5pm
 Pushed: 6 different powerup options that the player can choose and apply from 3 random options when the player levels up
 Learning: how to use dictionaries to store values and access across the project
