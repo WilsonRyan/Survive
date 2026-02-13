@@ -1,3 +1,8 @@
+2026-02-13 AM
+Pushed: Uploaded the game to itch.io and shared with close friends
+Learning: how to upload a game to itch.io and export the game without an extra .pck file
+Next: Get feedback on if the game executed easily
+
 2026-02-12 9pm
 Pushed: All music, SFX, and screen shake when the player gets hit
 Learning: how to recreate the screenshake with the camera2D
