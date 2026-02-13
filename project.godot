@@ -13,7 +13,8 @@ config_version=5
 config/name="Survive"
 run/main_scene="uid://bvo08cjvwj8vd"
 config/features=PackedStringArray("4.6", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://b1x8kojoxumt3"
+config/windows_native_icon="res://survive_icon.ico"
 
 [autoload]
 
