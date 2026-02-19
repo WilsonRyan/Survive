@@ -13,7 +13,7 @@ var powerups: Dictionary = {
 	"Player Speed": 200.0,
 	"Fire Rate": 100.0,
 	"Bullet Size": 100.0,
-	"Bullet Speed": 100.0,
+	"Bullet Speed": 150.0,
 	"Bullet Penetration": 1.0,
 	"Pickup Range": 100.0
 }

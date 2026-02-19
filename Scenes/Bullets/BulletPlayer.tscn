@@ -5,3 +5,9 @@
 
 [node name="BulletPlayer" unique_id=1844434712 instance=ExtResource("1_ee0uy")]
 script = ExtResource("2_gn0od")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=286759419]
+position = Vector2(-0.6666666, 0.6666666)
+
+[node name="Sprite2D" parent="." index="1" unique_id=146880474]
+scale = Vector2(1.5, 1.5)

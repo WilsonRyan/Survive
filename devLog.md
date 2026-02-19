@@ -1,3 +1,8 @@
+2026-02-18
+Pushed: Added customer art and animation for the bats, player, fireball, and xp coins
+Learning: how to export animation sheets from Aseprite
+Next: Game is done for the time being. Move on to a new game! \o/
+
 2026-02-13 AM
 Pushed: Uploaded the game to itch.io and shared with close friends
 Learning: how to upload a game to itch.io and export the game without an extra .pck file

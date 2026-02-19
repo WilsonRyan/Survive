@@ -1,21 +1,17 @@
 [gd_scene format=3 uid="uid://ta5s77ibhxf0"]
 
-[ext_resource type="Texture2D" uid="uid://utpq4c5lb7m8" path="res://Assets/monochrome-transparent_packed.png" id="1_jfosi"]
 [ext_resource type="Script" uid="uid://h5eaainwqyyh" path="res://Scenes/XP/Xp.gd" id="1_r7lev"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7lev"]
-atlas = ExtResource("1_jfosi")
-region = Rect2(357, 69, 6, 6)
+[ext_resource type="Texture2D" uid="uid://cd74ebu1eaoes" path="res://Assets/Sprites/coin.png" id="2_r7lev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ub4p"]
-size = Vector2(6, 6)
+size = Vector2(6, 8)
 
 [node name="XP" type="Area2D" unique_id=1180143144]
 collision_layer = 16
 script = ExtResource("1_r7lev")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=45546445]
-texture = SubResource("AtlasTexture_r7lev")
+texture = ExtResource("2_r7lev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=814052502]
 shape = SubResource("RectangleShape2D_2ub4p")

@@ -1,12 +1,51 @@
 [gd_scene format=3 uid="uid://d2n07t1f2erbi"]
 
 [ext_resource type="Script" uid="uid://8ognq384exnf" path="res://Scenes/Bullets/BulletBase.gd" id="1_udpnu"]
-[ext_resource type="Texture2D" uid="uid://utpq4c5lb7m8" path="res://Assets/monochrome-transparent_packed.png" id="1_ymtwp"]
+[ext_resource type="Texture2D" uid="uid://ddpt6vvtvns6h" path="res://Assets/Sprites/fireball.png" id="2_xrlpo"]
 [ext_resource type="AudioStream" uid="uid://chs33sfbyvdgf" path="res://Assets/SFX/hit2.ogg" id="3_xrlpo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymtwp"]
-radius = 4.0
-height = 10.0
+radius = 8.0
+height = 26.666668
+
+[sub_resource type="Animation" id="Animation_xrlpo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7hafh"]
+resource_name = "fire"
+length = 0.45
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8b4ji"]
+_data = {
+&"RESET": SubResource("Animation_xrlpo"),
+&"fire": SubResource("Animation_7hafh")
+}
 
 [node name="BulletBase" type="Area2D" unique_id=1844434712]
 rotation = 1.5707964
@@ -16,13 +55,15 @@ collision_mask = 4
 script = ExtResource("1_udpnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286759419]
+position = Vector2(-0.6666667, 0.66666675)
 shape = SubResource("CapsuleShape2D_ymtwp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=146880474]
+position = Vector2(0.66666675, 1.3333335)
 rotation = 3.1415927
-texture = ExtResource("1_ymtwp")
-region_enabled = true
-region_rect = Rect2(452, 178, 8, 12)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_xrlpo")
+hframes = 3
 
 [node name="Timer" type="Timer" parent="." unique_id=849612655]
 wait_time = 10.0
@@ -30,6 +71,10 @@ autostart = true
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1860165659]
 stream = ExtResource("3_xrlpo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1645184125]
+libraries/ = SubResource("AnimationLibrary_8b4ji")
+autoplay = &"fire"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
